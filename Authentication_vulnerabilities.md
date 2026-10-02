@@ -23,4 +23,13 @@ Sau khi nhập mã verify thành công, để ý URLS
 Tương tự với carlos, sau khi đăng nhập thành công ta sẽ sửa đường dẫn
 
 
-## 3. 
+## 3. Lab: Username enumeration via subtly different responses ##
+
+Thông báo đăng nhập trả về chung chung
+
+<img width="239" height="178" alt="image" src="https://github.com/user-attachments/assets/f6e45a48-8de4-4c04-adb4-060c3bd2a90c" />
+
+thử brute force cả username và password
+
+<img width="668" height="26" alt="image" src="https://github.com/user-attachments/assets/babc49ea-00c3-4113-9a93-a8286e7f65eb" />
+
