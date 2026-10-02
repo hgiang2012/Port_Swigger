@@ -1,4 +1,4 @@
-# 1. LAB 
+<img width="959" height="434" alt="image" src="https://github.com/user-attachments/assets/e459f0f9-2e68-4c10-854b-ab3847351a5a" /># 1. LAB 
 
 ## 1. Lab: Unprotected admin functionality ##
 
@@ -69,13 +69,50 @@ Deny again
 
 <img width="885" height="338" alt="image" src="https://github.com/user-attachments/assets/dedeb3b7-37e5-4def-b907-a92d3c3c024b" />
 
-## 7. Lab: Method-based access control can be circumvented ##
+## 7. Lab: User ID controlled by request parameter, with unpredictable user IDs ##
+
+Ở bài lab này, mỗi bài đăng sẽ do 1 người dùng khác nhau
+
+<img width="688" height="299" alt="image" src="https://github.com/user-attachments/assets/cf57368d-f61b-4aaa-ab49-f4649b35d2db" />
+
+Tìm bài của carlos
+
+<img width="959" height="242" alt="image" src="https://github.com/user-attachments/assets/1436985c-35ae-4599-8fcd-211083ebf49d" />
+
+Bấm vào `carlos` ta thấy hiện userid
+
+`https://.....web-security-academy.net/blogs?userId=d98aa022-4273-421f-9f79-bb00ab170221`
 
 ## 8. Lab: User ID controlled by request parameter ##
 
 Khi truy cập `https://....web-security-academy.net/my-account?id=wiener`, ta có API Key là ODRtAB9JES9brqu4jtrrhKKqIsD15HhF
 Đổi thành `https://....web-security-academy.net/my-account?id=carlos`, ta có 9VoKFo59XTRp4hvmoPzz0MJoUoNCpNtZ
 
+## 9. Lab: User ID controlled by request parameter with data leakage in redirect ##
+
+Khi đổi `id=carlos`, hệ thống bị rò rỉ thông tin ở response redirect
+
+<img width="959" height="245" alt="image" src="https://github.com/user-attachments/assets/cf3cd3c2-d88b-4233-b2b7-d2bc661bac00" />
+
+## 10. Lab: User ID controlled by request parameter with password disclosure ##
+
+Hệ thống trả về password người dùng dưới dạng plaintext
+
+<img width="717" height="146" alt="image" src="https://github.com/user-attachments/assets/3fd66189-d210-4003-8327-2a3b252d949b" />
+
+Ta đổi thành carlos
+
+<img width="937" height="157" alt="image" src="https://github.com/user-attachments/assets/77b9ffe3-ddfe-4dd7-9de0-937fb068ebfb" />
+
+Tương tự với tài khoản admin
+
+## 11. Lab: Insecure direct object references TÝ LÀM LẠI ##
+
+View transcript và để ý rằng số ở file txt tăng dần và bắt đầu từ 3
+
+<img width="959" height="434" alt="image" src="https://github.com/user-attachments/assets/5984892a-e020-4be3-a7a3-7ab7b6d774b8" />
+
+Ta thử từ 1,
 
 
 
