@@ -24,4 +24,4 @@ Truy cập
 
 <img width="338" height="120" alt="image" src="https://github.com/user-attachments/assets/1276e2c1-de07-4725-b4e7-8fa986a26d1a" />
 
-## 4. 
+## 4. Lab: Authentication bypass via information disclosure
