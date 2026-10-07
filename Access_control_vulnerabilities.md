@@ -108,11 +108,13 @@ Tương tự với tài khoản admin
 
 ## 11. Lab: Insecure direct object references TÝ LÀM LẠI ##
 
-View transcript và để ý rằng số ở file txt tăng dần và bắt đầu từ 3
+View transcript và để ý rằng số ở file txt tăng dần và bắt đầu từ 2
 
-<img width="959" height="434" alt="image" src="https://github.com/user-attachments/assets/5984892a-e020-4be3-a7a3-7ab7b6d774b8" />
+<img width="198" height="160" alt="image" src="https://github.com/user-attachments/assets/ea906e49-c5d7-4601-aa94-624f596bb12a" />
 
-Ta thử từ 1,
+Modify request GET để xem file 1.txt ta được password
+
+<img width="647" height="143" alt="image" src="https://github.com/user-attachments/assets/9ec31e54-ba76-41f5-a685-883d2e6e90d9" />
 
 
 
