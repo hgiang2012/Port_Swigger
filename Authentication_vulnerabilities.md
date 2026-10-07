@@ -35,3 +35,64 @@ thử brute force cả username và password
 
 <img width="668" height="26" alt="image" src="https://github.com/user-attachments/assets/babc49ea-00c3-4113-9a93-a8286e7f65eb" />
 
+# 5. Lab: 2FA broken logic
+
+Có request GET này để gửi mã xác minh, ta sẽ đổi giá trị verify thành `carlos` để hệ thống gửi mã xác nhận cho tài khoản đó
+
+<img width="320" height="188" alt="image" src="https://github.com/user-attachments/assets/69b8f633-607e-4b6c-a9ec-1cd7168321e2" />
+
+Đây là request để gửi mã xác minh lên hệ thống, xác thực đăng nhập tài khoản
+
+<img width="311" height="207" alt="image" src="https://github.com/user-attachments/assets/35072934-a419-4ff1-b35f-32850445d14e" />
+
+Đổi verfy thành `carlos` và bruteforce giá trị mfa
+
+<img width="709" height="132" alt="image" src="https://github.com/user-attachments/assets/0010f7d5-08b9-44fb-8040-741ad3c56732" />
+
+# 6. Lab: Password brute-force via password change
+
+Nhập sai password hiện tại thì hiện thông báo như sau
+
+<img width="443" height="118" alt="image" src="https://github.com/user-attachments/assets/a2cf1728-b9e7-4e78-9f55-ca204bb80cd1" />
+
+Tận dụng alert này để bruteforce password 
+
+<img width="563" height="28" alt="image" src="https://github.com/user-attachments/assets/167a168e-7e4a-461c-afd7-7ad65d9ca8f1" />
+
+Vậy password là `112233`
+
+# 7. Lab: Broken brute-force protection, multiple credentials per request
+
+Thử bruteforce nhưng bị hệ thống chặn
+
+<img width="678" height="53" alt="image" src="https://github.com/user-attachments/assets/c45d9dad-561d-4c30-a121-4ee3f5c68adf" />
+
+Để ý form đăng nhập trong request đang ở dạng JSON, ta sẽ test nhiều password một lúc trong 1 request 
+
+
+<img width="632" height="243" alt="image" src="https://github.com/user-attachments/assets/07440e86-e82c-4ba5-a906-092314020c7e" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
