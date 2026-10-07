@@ -44,4 +44,9 @@ Sử dụng `..%2f` và thành công
 
 <img width="606" height="82" alt="image" src="https://github.com/user-attachments/assets/285a7c1e-17e5-476a-afae-eb0714c23783" />
 
+## 4.
 
+
+<img width="588" height="160" alt="image" src="https://github.com/user-attachments/assets/5d497e2d-2ce3-4e7e-aa6f-3c5387eccf3f" />
+
+# 5. 
