@@ -116,6 +116,18 @@ Modify request GET để xem file 1.txt ta được password
 
 <img width="647" height="143" alt="image" src="https://github.com/user-attachments/assets/9ec31e54-ba76-41f5-a685-883d2e6e90d9" />
 
+## 12. Lab: Referer-based access control ##
+
+Đây là request dùng để update user lên admin khi đã đăng nhập vào tk của administrator cùng với session của admin. Khi đăng nhập vào tk wiener và gửi lại request đó thì lỗi unauthorized
+
+<img width="485" height="58" alt="image" src="https://github.com/user-attachments/assets/63f7ad78-e237-479f-993c-d58b41162545" />
+
+Thử đổi thành session của wiener hiện tại thì thành công
+
+<img width="362" height="40" alt="image" src="https://github.com/user-attachments/assets/ef33f331-9b93-40c4-8dc9-373b0a60fae2" />
+
+## 13. 
+
 
 
 # 2. NOTE 
