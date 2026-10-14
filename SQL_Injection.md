@@ -139,7 +139,7 @@ Xác định các cột `%27union+select+column_name,null+from+all_tab_columns+w
 
 # 2. NOTE #
 
-- Sự khác biệt giữa 2 bảng `V$VERSION` và `V$INSTANCE`
+# 1. Sự khác biệt giữa 2 bảng `V$VERSION` và `V$INSTANCE`
 + V$VERSION: Phần mềm đang dùng phiên bản gì?
 + V$INSTANCE:
       ├── Instance tên gì?
@@ -147,6 +147,7 @@ Xác định các cột `%27union+select+column_name,null+from+all_tab_columns+w
       ├── Version gì?
       ├── Trạng thái hiện tại?
       └── Khởi động lúc nào?
+
 
   
 
