@@ -45,7 +45,9 @@ Ta sẽ thực hiện tấn công bằng cách chèn file XML vào giá trị pr
 
 <img width="876" height="234" alt="image" src="https://github.com/user-attachments/assets/68aaa557-0e97-4f03-a281-158952519207" />
 
-## 4. Lab: Exploiting XXE via image file upload ##
+## 4. Lab: Blind XXE with out-of-band interaction ##
+
+
 
 
 
