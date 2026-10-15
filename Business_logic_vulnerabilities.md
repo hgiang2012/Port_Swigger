@@ -45,3 +45,7 @@ Lấy thêm 1 mã coupon ở phần `Sign up to our newsletter!`
 Vậy ta sẽ thử nhập thứ tự so le nhau 
 
 <img width="485" height="423" alt="image" src="https://github.com/user-attachments/assets/cf72ffae-862b-446a-bb84-321db8a03e5d" />
+
+## 5. Lab: Low-level logic flaw ##
+
+
