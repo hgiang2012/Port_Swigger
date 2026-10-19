@@ -1,4 +1,4 @@
-<img width="803" height="53" alt="image" src="https://github.com/user-attachments/assets/c047cb9c-ec62-4ce1-951f-00473f3de664" /># 1. LAB 
+# 1. LAB 
 
 ## 1. Lab: Remote code execution via web shell upload ##
 
