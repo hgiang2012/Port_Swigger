@@ -1,4 +1,4 @@
-<img width="959" height="434" alt="image" src="https://github.com/user-attachments/assets/e459f0f9-2e68-4c10-854b-ab3847351a5a" /># 1. LAB 
+# 1. LAB 
 
 ## 1. Lab: Unprotected admin functionality ##
 
@@ -126,7 +126,9 @@ Thử đổi thành session của wiener hiện tại thì thành công
 
 <img width="362" height="40" alt="image" src="https://github.com/user-attachments/assets/ef33f331-9b93-40c4-8dc9-373b0a60fae2" />
 
-## 13. 
+## 13. Lab: Method-based access control can be circumvented ##
+
+
 
 
 
